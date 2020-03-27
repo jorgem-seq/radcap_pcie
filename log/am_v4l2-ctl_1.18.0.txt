@@ -1,0 +1,7 @@
+
+Status Log:
+
+   [ 1273.182586] Radcap PCIe [1] [AM]: =================  START STATUS  =================
+   [ 1273.182588] v4l2-ctrls: Radcap PCIe [1] [AM]: Narrow Audio: false
+   [ 1273.182589] v4l2-ctrls: Radcap PCIe [1] [AM]: Dual Tuner: false
+   [ 1273.182590] Radcap PCIe [1] [AM]: ==================  END STATUS  ==================

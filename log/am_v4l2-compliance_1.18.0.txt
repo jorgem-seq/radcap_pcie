@@ -1,0 +1,101 @@
+v4l2-compliance SHA: not available, 64 bits
+
+Compliance test for Radcap_PCIe device /dev/radio1:
+
+Driver Info:
+	Driver name      : Radcap_PCIe
+	Card type        : Radcap PCIe
+	Bus info         : PCI:0000:06:00.0
+	Driver version   : 5.6.0
+	Capabilities     : 0x80250000
+		Tuner
+		Radio
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x00250000
+		Tuner
+		Radio
+		Extended Pix Format
+
+Required ioctls:
+	test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+	test second /dev/radio1 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK
+	test VIDIOC_G/S_FREQUENCY: OK
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 32
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+		info: checking v4l2_queryctrl of control 'User Controls' (0x00980001)
+		info: checking v4l2_queryctrl of control 'Dual Tuner' (0x00982800)
+		info: checking v4l2_queryctrl of control 'Narrow Audio' (0x00982801)
+		info: checking v4l2_queryctrl of control 'Dual Tuner' (0x08000000)
+		info: checking v4l2_queryctrl of control 'Narrow Audio' (0x08000001)
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+		info: checking control 'User Controls' (0x00980001)
+		info: checking control 'Dual Tuner' (0x00982800)
+		info: checking control 'Narrow Audio' (0x00982801)
+	test VIDIOC_G/S_CTRL: OK
+		info: checking extended control 'User Controls' (0x00980001)
+		info: checking extended control 'Dual Tuner' (0x00982800)
+		info: checking extended control 'Narrow Audio' (0x00982801)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+		info: checking control event 'User Controls' (0x00980001)
+		info: checking control event 'Dual Tuner' (0x00982800)
+		info: checking control event 'Narrow Audio' (0x00982801)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 1 Private Controls: 2
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+
+Total for Radcap_PCIe device /dev/radio1: 44, Succeeded: 44, Failed: 0, Warnings: 0

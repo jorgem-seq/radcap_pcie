@@ -1,0 +1,8 @@
+
+Status Log:
+
+   [ 1292.469458] Radcap PCIe [0] [FM]: =================  START STATUS  =================
+   [ 1292.469460] v4l2-ctrls: Radcap PCIe [0] [FM]: Narrow Audio: false
+   [ 1292.469461] v4l2-ctrls: Radcap PCIe [0] [FM]: Dual Tuner: false
+   [ 1292.469462] v4l2-ctrls: Radcap PCIe [0] [FM]: De-Emphasis: 75 Microseconds
+   [ 1292.469463] Radcap PCIe [0] [FM]: ==================  END STATUS  ==================
