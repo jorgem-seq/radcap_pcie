@@ -105,7 +105,7 @@ static void radcap_hw_write_key(struct radcap_dev *dev)
 
 	/* If fpga_id matches write fpga_key to enable more nodes */
 	for (i = 0; i < key_count; i++) {
-		int read = 0;
+		int read;
 		uint32_t fpga_key = 0;
 		uint64_t fpga_id = 0;
 
