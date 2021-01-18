@@ -180,7 +180,7 @@ static int snd_radcap_pcm_prepare(struct snd_pcm_substream *substream)
 	/* Set vol, enable audio */
 	mutex_lock(&chip->mlock);
 	ctrl_iowrite32(dev, dev->card.vol_reg + source,
-		       chip->mixer_volume[source][0] +
+		       chip->mixer_volume[source][0] |
 		       ((uint32_t)chip->mixer_volume[source][1] << 16));
 	mutex_unlock(&chip->mlock);
 
@@ -348,7 +348,7 @@ static int snd_radcap_mixer_put(struct snd_kcontrol *kcontrol,
 		chip->mixer_volume[source][0] = left;
 		chip->mixer_volume[source][1] = right;
 		ctrl_iowrite32(dev, dev->card.vol_reg + source,
-			       chip->mixer_volume[source][0] +
+			       chip->mixer_volume[source][0] |
 			       ((uint32_t)chip->mixer_volume[source][1] << 16));
 		change = 1;
 	}
