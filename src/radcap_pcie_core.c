@@ -107,10 +107,10 @@ static void radcap_hw_write_key(struct radcap_dev *dev)
 	for (i = 0; i < key_count; i++) {
 		int read;
 		uint32_t fpga_key = 0;
-		uint64_t fpga_id = 0;
+		u64 fpga_id = 0;
 
 		read = sscanf(key[i], "%15llx:%u", &fpga_id, &fpga_key);
-		if ((read == 2) && (fpga_id == dev->fpga_id))
+		if ((read == 2) && (fpga_id == (u64)dev->fpga_id))
 			ctrl_iowrite32(dev, dev->card.fpga_key_reg, fpga_key);
 	}
 }
@@ -297,7 +297,7 @@ static int radcap_pcie_probe(struct pci_dev *pdev, const struct pci_device_id *p
 		goto free_v4l2;
 
 	radcap_pr_info("id: %llx (%u %s tuners detected)\n",
-		       dev->fpga_id, dev->card_nodes, dev->card.band);
+		      (u64)dev->fpga_id, dev->card_nodes, dev->card.band);
 	if (debug > 0)
 		radcap_pr_info("irq: %d, Ctrl MMIO: 0x%p, SGDMA MMIO: 0x%p\n",
 			       pdev->irq, dev->ctrl, dev->sg);

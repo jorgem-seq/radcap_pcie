@@ -195,7 +195,7 @@ static int snd_radcap_pcm_prepare(struct snd_pcm_substream *substream)
 
 		sg_iowrite64(dev, (uint64_t)(ofs + source * 64), sgval);
 		dprintk(2, "reg = 0x%llx, val = 0x%llx\n",
-		       (uint64_t)(ofs + source * 64), sgval);
+		       (u64)(ofs + source * 64), (u64)sgval);
 	}
 #ifdef RADCAP_PCM_BUFFERS
 	ctrl_iowrite32(dev, RADCAP_PCM_BUF_REG, runtime->period_size * RADCAP_PCM_BUF_NUM);
@@ -246,8 +246,8 @@ snd_radcap_pcm_pointer(struct snd_pcm_substream *substream)
 	pointer = bytes_to_frames(runtime, pointer);
 	if (pointer >= runtime->buffer_size)
 		pointer = 0;
-	dprintk(3, "pointer = 0x%lx, buffer_size = %lu\n",
-		pointer, runtime->buffer_size);
+	dprintk(3, "pointer = 0x%llx, buffer_size = %llu\n",
+	       (u64)pointer, (u64)runtime->buffer_size);
 	return pointer;
 }
 
@@ -450,7 +450,7 @@ static int snd_radcap_card_create(struct radcap_dev *dev, int devnum)
 	strscpy(card->driver, KBUILD_MODNAME, sizeof(card->driver));
 	strscpy(card->shortname, RADCAP_DRV_NAME, sizeof(card->shortname));
 	snprintf(card->longname, sizeof(card->longname), "%s irq %d id %llx",
-		 card->shortname, chip->pdev->irq, chip->dev->fpga_id);
+		 card->shortname, chip->pdev->irq, (u64)chip->dev->fpga_id);
 
 	ret = snd_card_register(card);
 	if (ret < 0)
