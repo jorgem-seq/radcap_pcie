@@ -120,7 +120,7 @@ static int radcap_hw_setup(struct radcap_dev *dev)
 	int i;
 
 	/* Get the Xilinx Spartan-6 FPGA Unique Device Identifier */
-	for (i = 0; i < 30; i++) {
+	for (i = 0; i < 32; i++) {
 		dev->fpga_id = lo_hi_readq(dev->ctrl + dev->card.fpga_id_reg);
 		udelay(1);
 	}
@@ -134,7 +134,7 @@ static int radcap_hw_setup(struct radcap_dev *dev)
 	}
 
 	/* Wait for the value to be updated and get the number of nodes */
-	for (i = 0; i < 30; i++) {
+	for (i = 0; i < 32; i++) {
 		dev->card_nodes = ctrl_ioread32(dev, RADCAP_NODES_VAL_REG);
 		udelay(1);
 	}
