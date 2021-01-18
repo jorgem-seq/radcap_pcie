@@ -175,8 +175,7 @@ static int snd_radcap_pcm_prepare(struct snd_pcm_substream *substream)
 	struct snd_card_radcap *chip = snd_pcm_substream_chip(substream);
 	struct radcap_dev *dev = chip->dev;
 	int source = substream->number;
-	unsigned int ofs;
-	size_t size = runtime->dma_bytes;
+	size_t ofs, size = runtime->dma_bytes;
 
 	/* Set vol, enable audio */
 	mutex_lock(&chip->mlock);
@@ -194,7 +193,7 @@ static int snd_radcap_pcm_prepare(struct snd_pcm_substream *substream)
 		else
 			sgval |= ((size - ofs * PAGE_SIZE) & SGTABLE_END) >> 2;
 
-		sg_iowrite64(dev, ofs + source * 64, sgval);
+		sg_iowrite64(dev, (uint64_t)(ofs + source * 64), sgval);
 		dprintk(2, "reg = 0x%llx, val = 0x%llx\n",
 		       (uint64_t)(ofs + source * 64), sgval);
 	}
