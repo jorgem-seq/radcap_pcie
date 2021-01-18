@@ -280,7 +280,7 @@ static int snd_radcap_pcm_create(struct snd_card_radcap *chip)
 	return 0;
 }
 
-static irqreturn_t snd_radcap_irq_handler(int irq, void *dev_id)
+static irqreturn_t snd_radcap_irq_handler(int __always_unused irq, void *dev_id)
 {
 	struct snd_card_radcap *chip = dev_id;
 	struct radcap_dev *dev = chip->dev;
@@ -319,7 +319,7 @@ static int snd_radcap_mixer_get(struct snd_kcontrol *kcontrol,
 	return 0;
 }
 
-static int snd_radcap_mixer_info(struct snd_kcontrol *kcontrol,
+static int snd_radcap_mixer_info(struct snd_kcontrol __always_unused *kcontrol,
 				 struct snd_ctl_elem_info *uinfo)
 {
 	uinfo->type = SNDRV_CTL_ELEM_TYPE_INTEGER;

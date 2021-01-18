@@ -62,7 +62,7 @@ module_param(debug, int, 0);
 MODULE_PARM_DESC(debug, "Set the debug level.");
 
 #if defined(CONFIG_MODULES) && defined(MODULE)
-static void request_module_async(struct work_struct *work)
+static void request_module_async(struct work_struct __always_unused *work)
 {
 	request_module("Radcap_PCIe_ALSA");
 }

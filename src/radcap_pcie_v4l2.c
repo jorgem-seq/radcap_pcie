@@ -138,7 +138,8 @@ write_cmd:
 	ctrl_iowrite32(dev, RADCAP_DEMOD_SET_REG, cmd);
 }
 
-static int radio_querycap(struct file *file, void *priv, struct v4l2_capability *cap)
+static int radio_querycap(struct file *file, void __always_unused *priv,
+			  struct v4l2_capability *cap)
 {
 	struct radcap_dev *dev = video_drvdata(file);
 
@@ -148,7 +149,8 @@ static int radio_querycap(struct file *file, void *priv, struct v4l2_capability 
 	return 0;
 }
 
-static int radio_g_tuner(struct file *file, void *priv, struct v4l2_tuner *t)
+static int radio_g_tuner(struct file *file, void __always_unused *priv,
+			 struct v4l2_tuner *t)
 {
 	struct radcap_dev *dev = video_drvdata(file);
 	u32 tuner = t->index;
@@ -182,7 +184,8 @@ static int radio_g_tuner(struct file *file, void *priv, struct v4l2_tuner *t)
 	return 0;
 }
 
-static int radio_s_tuner(struct file *file, void *priv, const struct v4l2_tuner *t)
+static int radio_s_tuner(struct file *file, void __always_unused *priv,
+			 const struct v4l2_tuner *t)
 {
 	struct radcap_dev *dev = video_drvdata(file);
 	u32 tuner = t->index;
@@ -204,7 +207,8 @@ static int radio_s_tuner(struct file *file, void *priv, const struct v4l2_tuner 
 	return 0;
 }
 
-static int radio_g_frequency(struct file *file, void *priv, struct v4l2_frequency *f)
+static int radio_g_frequency(struct file *file, void __always_unused *priv,
+			     struct v4l2_frequency *f)
 {
 	struct radcap_dev *dev = video_drvdata(file);
 	u32 tuner = f->tuner;
@@ -219,7 +223,7 @@ static int radio_g_frequency(struct file *file, void *priv, struct v4l2_frequenc
 	return 0;
 }
 
-static int radio_s_frequency(struct file *file, void *priv,
+static int radio_s_frequency(struct file *file, void __always_unused *priv,
 			     const struct v4l2_frequency *f)
 {
 	struct radcap_dev *dev = video_drvdata(file);
