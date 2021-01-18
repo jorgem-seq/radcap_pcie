@@ -351,36 +351,22 @@ static void radcap_pcie_remove(struct pci_dev *pdev)
 	pci_disable_device(pdev);
 }
 
-#ifdef CONFIG_PM
-static int radcap_pcie_suspend(struct pci_dev *pdev, pm_message_t state)
+static int __maybe_unused radcap_pcie_suspend(struct device *dev_d)
 {
-	struct v4l2_device *v4l2_dev = pci_get_drvdata(pdev);
+	struct v4l2_device *v4l2_dev = dev_get_drvdata(dev_d);
 	struct radcap_dev *dev = container_of(v4l2_dev, struct radcap_dev, v4l2_dev);
 
 	/* Shutdown card */
 	radcap_set_demod(dev, RADCAP_DEMOD_OFF);
 	udelay(5);
 
-	pci_save_state(pdev);
-	pci_disable_device(pdev);
-	pci_set_power_state(pdev, pci_choose_state(pdev, state));
 	return 0;
 }
 
-static int radcap_pcie_resume(struct pci_dev *pdev)
+static int __maybe_unused radcap_pcie_resume(struct device *dev_d)
 {
-	struct v4l2_device *v4l2_dev = pci_get_drvdata(pdev);
+	struct v4l2_device *v4l2_dev = dev_get_drvdata(dev_d);
 	struct radcap_dev *dev = container_of(v4l2_dev, struct radcap_dev, v4l2_dev);
-	int ret;
-
-	pci_set_power_state(pdev, PCI_D0);
-	pci_restore_state(pdev);
-
-	ret = pci_enable_device(pdev);
-	if (ret)
-		return ret;
-
-	pci_set_master(pdev);
 
 	/* Write the key */
 	if (key_count) {
@@ -393,7 +379,6 @@ static int radcap_pcie_resume(struct pci_dev *pdev)
 	radcap_set_demod(dev, RADCAP_DEMOD_ON);
 	return 0;
 }
-#endif /* CONFIG_PM */
 
 static const struct pci_device_id radcap_pcie_tbl[] = {
 	{ PCI_DEVICE_DATA(SONIFEX, RADCAP_PCIE_AM, CARD_AM) },
@@ -402,15 +387,14 @@ static const struct pci_device_id radcap_pcie_tbl[] = {
 };
 MODULE_DEVICE_TABLE(pci, radcap_pcie_tbl);
 
+static SIMPLE_DEV_PM_OPS(radcap_pcie_pm_ops, radcap_pcie_suspend, radcap_pcie_resume);
+
 static struct pci_driver radcap_pcie_driver = {
 	.name		= KBUILD_MODNAME,
 	.id_table	= radcap_pcie_tbl,
 	.probe		= radcap_pcie_probe,
 	.remove		= radcap_pcie_remove,
-#ifdef CONFIG_PM
-	.suspend	= radcap_pcie_suspend,
-	.resume		= radcap_pcie_resume,
-#endif
+	.driver.pm	= &radcap_pcie_pm_ops,
 };
 
 module_pci_driver(radcap_pcie_driver);
