@@ -89,12 +89,12 @@ void radcap_set_freq(struct radcap_dev *dev, uint32_t tuner)
 	case CARD_AM:
 		freq = clamp_t(int32_t, freq, tuners[TUNER_AM].rangelow,
 			       tuners[TUNER_AM].rangehigh);
-		dev->tuner_cmd[tuner] = (tuner << 16) + am_freq_to_val(freq / 16);
+		dev->tuner_cmd[tuner] = (tuner << 16) | am_freq_to_val(freq / 16);
 		break;
 	case CARD_FM:
 		freq = clamp_t(int32_t, freq, tuners[TUNER_FM].rangelow,
 			       tuners[TUNER_FM].rangehigh);
-		dev->tuner_cmd[tuner] = (tuner << 16) + fm_freq_to_val(freq / 16);
+		dev->tuner_cmd[tuner] = (tuner << 16) | fm_freq_to_val(freq / 16);
 		break;
 	}
 	dev->freq[tuner] = freq;
