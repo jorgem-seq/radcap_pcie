@@ -80,7 +80,7 @@ struct snd_card_radcap {
 	struct	snd_card		*card;
 	struct	pci_dev			*pdev;
 	struct	snd_pcm_substream	*radcap_pcm_substream[RADCAP_MAX_NODES];
-	int				irq;
+	unsigned int			irq;
 	uint32_t			radcap_pcm_status[RADCAP_MAX_NODES];
 	uint16_t			mixer_volume[RADCAP_MAX_NODES][2];
 };
@@ -449,7 +449,7 @@ static int snd_radcap_card_create(struct radcap_dev *dev, int devnum)
 
 	strscpy(card->driver, KBUILD_MODNAME, sizeof(card->driver));
 	strscpy(card->shortname, RADCAP_DRV_NAME, sizeof(card->shortname));
-	snprintf(card->longname, sizeof(card->longname), "%s irq %d id %llx",
+	snprintf(card->longname, sizeof(card->longname), "%s irq %u id %llx",
 		 card->shortname, chip->pdev->irq, (u64)chip->dev->fpga_id);
 
 	ret = snd_card_register(card);

@@ -299,7 +299,7 @@ static int radcap_pcie_probe(struct pci_dev *pdev, const struct pci_device_id *p
 	radcap_pr_info("id: %llx (%u %s tuners detected)\n",
 		      (u64)dev->fpga_id, dev->card_nodes, dev->card.band);
 	if (debug > 0)
-		radcap_pr_info("irq: %d, Ctrl MMIO: 0x%p, SGDMA MMIO: 0x%p\n",
+		radcap_pr_info("irq: %u, Ctrl MMIO: 0x%p, SGDMA MMIO: 0x%p\n",
 			       pdev->irq, dev->ctrl, dev->sg);
 	radcap_pr_info("registered as %s (%d %s tuners enabled)\n",
 		       video_device_node_name(&dev->rdev),
