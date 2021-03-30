@@ -24,7 +24,7 @@
 
 #include "radcap_pcie.h"
 
-#define	RADCAP_V4L2_NAME	"Radcap PCIe V4L2"
+#define RADCAP_V4L2_NAME	"Radcap PCIe V4L2"
 
 #define NOPILOTVAL		GENMASK(7, 0)
 #define FREQMASK		GENMASK(15, 0)

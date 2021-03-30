@@ -35,9 +35,9 @@ MODULE_AUTHOR("Jorge Maidana <jorgem.seq@gmail.com>");
 MODULE_DESCRIPTION("Sonifex Radcap PCIe ALSA Driver");
 MODULE_LICENSE("GPL v2");
 
-#define	RADCAP_ALSA_NAME		"Radcap PCIe ALSA"
-#define	RADCAP_MIXER_NAME		"Radcap PCIe MIXER"
-#define	RADCAP_PCM_NAME			"Radcap PCIe PCM"
+#define RADCAP_ALSA_NAME		"Radcap PCIe ALSA"
+#define RADCAP_MIXER_NAME		"Radcap PCIe MIXER"
+#define RADCAP_PCM_NAME			"Radcap PCIe PCM"
 
 #define RADCAP_BUFFER_SIZE		SZ_128K
 #define RADCAP_PERIOD_BYTES_MIN		64

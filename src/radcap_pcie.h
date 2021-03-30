@@ -23,18 +23,18 @@
 #include <media/v4l2-device.h>
 #include <linux/io-64-nonatomic-lo-hi.h>
 
-#define	RADCAP_DRV_NAME			"Radcap PCIe"
-#define	RADCAP_MAX_CARDS		32
+#define RADCAP_DRV_NAME			"Radcap PCIe"
+#define RADCAP_MAX_CARDS		32
 
 /* IO */
-#define	RADCAP_CTRL_BAR			0
-#define	RADCAP_SG_BAR			2
+#define RADCAP_CTRL_BAR			0
+#define RADCAP_SG_BAR			2
 
 /* Tuners + ALSA Subdevices */
 #define RADCAP_NODES_VAL_REG		0x00
 
-#define	RADCAP_MIN_NODES		6
-#define	RADCAP_MAX_NODES		32
+#define RADCAP_MIN_NODES		6
+#define RADCAP_MAX_NODES		32
 
 /* AM */
 #define RADCAP_AM_CTRL_REG		0x40
@@ -105,8 +105,8 @@
 #define RADCAP_HW_START			1
 
 /* IRQ */
-#define	RADCAP_IRQ_STATUS		0x01
-#define	RADCAP_IRQ_PCM			0x01
+#define RADCAP_IRQ_STATUS		0x01
+#define RADCAP_IRQ_PCM			0x01
 
 enum {
 	CARD_AM,
@@ -161,7 +161,7 @@ struct radcap_dev {
 /* Helpers */
 
 /* Card disconnection or bad host */
-#define	IOREAD32_ERR			(~0u)
+#define IOREAD32_ERR			(~0u)
 
 static inline uint32_t ctrl_ioread32(struct radcap_dev *dev, uint32_t reg)
 {

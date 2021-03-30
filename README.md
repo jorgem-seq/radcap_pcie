@@ -9,7 +9,6 @@ $ make
 $ sudo modprobe videodev
 $ sudo insmod Radcap_PCIe.ko
 $ sudo insmod Radcap_PCIe_ALSA.ko
-
 ```
 
 ### Unloading the modules
