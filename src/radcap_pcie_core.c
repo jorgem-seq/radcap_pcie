@@ -168,7 +168,7 @@ static int radcap_pcie_probe(struct pci_dev *pdev, const struct pci_device_id *p
 	struct v4l2_ctrl_handler *hdl;
 	int ret;
 
-	if (radcap_devcount == RADCAP_MAX_CARDS)
+	if (radcap_devcount >= RADCAP_MAX_CARDS)
 		return -ENODEV;
 
 	/* PCI */
