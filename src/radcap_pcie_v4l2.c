@@ -179,7 +179,7 @@ static int radio_g_tuner(struct file *file, void __always_unused *priv,
 	}
 	snprintf(t->name, sizeof(t->name), "tuner %u", t->index);
 	v4l2_dbg(1, dev->debug, dev,
-		 "%s, audmode = %u, signal = %u, rxsubchans = %u\n",
+		 "%s, audmode = %u, signal = %d, rxsubchans = %u\n",
 		 t->name, t->audmode, t->signal, t->rxsubchans);
 	return 0;
 }
