@@ -128,10 +128,8 @@ static int radcap_hw_setup(struct radcap_dev *dev)
 		return -ENODEV;
 
 	/* Write the key */
-	if (key_count) {
+	if (key_count)
 		radcap_hw_write_key(dev);
-		mb(); /* Ensure the key is written */
-	}
 
 	/* Wait for the value to be updated and get the number of nodes */
 	for (i = 0; i < 32; i++) {
@@ -369,10 +367,8 @@ static int __maybe_unused radcap_pcie_resume(struct device *dev_d)
 	struct radcap_dev *dev = container_of(v4l2_dev, struct radcap_dev, v4l2_dev);
 
 	/* Write the key */
-	if (key_count) {
+	if (key_count)
 		radcap_hw_write_key(dev);
-		mb(); /* Ensure the key is written */
-	}
 
 	/* Everything needs to be restarted */
 	radcap_hw_reset(dev, RADCAP_HW_RESUME);
