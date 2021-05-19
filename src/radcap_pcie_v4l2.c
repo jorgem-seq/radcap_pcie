@@ -36,7 +36,9 @@
 
 /* The base for the Radcap_PCIe driver controls. Total of 16 controls are reserved
  * for this driver */
+#ifndef V4L2_CID_USER_RADCAP_BASE
 #define V4L2_CID_USER_RADCAP_BASE	(V4L2_CID_USER_BASE + 0x1f00)
+#endif
 
 enum {
 	V4L2_CID_RADCAP_DUAL = (V4L2_CID_USER_RADCAP_BASE + 0),
