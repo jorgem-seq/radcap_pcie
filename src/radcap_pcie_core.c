@@ -250,7 +250,7 @@ static int radcap_pcie_probe(struct pci_dev *pdev, const struct pci_device_id *p
 	ret = v4l2_device_register(&pdev->dev, v4l2_dev);
 	if (ret) {
 		v4l2_err(v4l2_dev, "can't register V4L2 device\n");
-		goto free_sg_mmio;
+		goto list_del_dev;
 	}
 
 	/* Add the controls */
@@ -310,6 +310,10 @@ static int radcap_pcie_probe(struct pci_dev *pdev, const struct pci_device_id *p
 free_v4l2:
 	v4l2_ctrl_handler_free(hdl);
 	v4l2_device_unregister(v4l2_dev);
+list_del_dev:
+	mutex_lock(&radcap_devlist_lock);
+	list_del(&dev->devlist);
+	mutex_unlock(&radcap_devlist_lock);
 free_sg_mmio:
 	iounmap(dev->sg);
 free_ctrl_mmio:
