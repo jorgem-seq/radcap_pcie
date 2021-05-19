@@ -49,7 +49,7 @@ enum {
 };
 
 static const struct v4l2_tuner tuners[] = {
-	{
+	[TUNER_AM] = {
 		.capability	= V4L2_TUNER_CAP_LOW,
 		.audmode	= V4L2_TUNER_MODE_MONO,
 		.rxsubchans	= V4L2_TUNER_SUB_MONO,
@@ -57,7 +57,7 @@ static const struct v4l2_tuner tuners[] = {
 		.rangehigh	= (1710 * 16),
 		.type		= V4L2_TUNER_RADIO,
 	},
-	{
+	[TUNER_FM] = {
 		.capability	= (V4L2_TUNER_CAP_LOW |
 #ifdef RADCAP_FM_RDS
 				   V4L2_TUNER_CAP_RDS |
