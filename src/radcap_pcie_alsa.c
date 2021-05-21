@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 /*
- * radcap_pcie_alsa.c - Sonifex Radcap PCIe ALSA Driver
  * Copyright (c) 2020 Jorge Maidana <jorgem.seq@gmail.com>
  *
  * This driver is a derivative of:

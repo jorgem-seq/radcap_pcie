@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 /*
- * radcap_pcie_v4l2.c - Sonifex Radcap PCIe V4L2 Driver
  * Copyright (c) 2020 Jorge Maidana <jorgem.seq@gmail.com>
  *
  * This driver is a derivative of:
