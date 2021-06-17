@@ -151,8 +151,8 @@ static void radcap_hw_reset(struct radcap_dev *dev, bool power)
 
 	for (node = 0; node < dev->nodes; node++) {
 		ctrl_iowrite32(dev, dev->card.ctrl_reg + node, RADCAP_PCM_STOP);
-		if (power == RADCAP_HW_START)
-			dev->fm_audmode_set[node] = RADCAP_FM_AUDMODE_UNSET; /* Reset fm audmode on init */
+		if (power == RADCAP_HW_START) /* Reset fm audmode on init */
+			dev->fm_audmode_set[node] = RADCAP_FM_AUDMODE_UNSET;
 		radcap_set_freq(dev, node);
 		udelay(1);
 	}

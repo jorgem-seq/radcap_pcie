@@ -336,8 +336,8 @@ static int snd_radcap_mixer_put(struct snd_kcontrol *kcontrol,
 	int change = 0;
 	u32 source = kcontrol->id.index;
 
-	left = clamp_t(uint16_t, ucontrol->value.integer.value[0],
-		       RADCAP_MIN_VOL, RADCAP_MAX_VOL);
+	left  = clamp_t(uint16_t, ucontrol->value.integer.value[0],
+			RADCAP_MIN_VOL, RADCAP_MAX_VOL);
 	right = clamp_t(uint16_t, ucontrol->value.integer.value[1],
 			RADCAP_MIN_VOL, RADCAP_MAX_VOL);
 

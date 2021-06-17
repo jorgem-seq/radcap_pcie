@@ -40,7 +40,7 @@
 #endif
 
 enum {
-	V4L2_CID_RADCAP_DUAL = (V4L2_CID_USER_RADCAP_BASE + 0),
+	V4L2_CID_RADCAP_DUAL	= (V4L2_CID_USER_RADCAP_BASE + 0),
 	V4L2_CID_RADCAP_NARROW,
 };
 
@@ -112,10 +112,8 @@ void radcap_set_demod(struct radcap_dev *dev, bool status)
 
 	switch (dev->board) {
 	case CARD_AM:
-		cmd += dev->narrow ? RADCAP_AM_AUDIO_NARROW :
-				     RADCAP_AM_AUDIO_WIDE;
-		cmd += dev->dual ? RADCAP_AM_TUNER_DUAL :
-				   RADCAP_AM_TUNER_SINGLE;
+		cmd += dev->narrow ? RADCAP_AM_AUDIO_NARROW : RADCAP_AM_AUDIO_WIDE;
+		cmd += dev->dual ? RADCAP_AM_TUNER_DUAL : RADCAP_AM_TUNER_SINGLE;
 		break;
 	case CARD_FM: {
 		uint32_t fm_bw = dev->narrow ? RADCAP_FM_AUDIO_NARROW :
