@@ -241,7 +241,8 @@ snd_radcap_pcm_pointer(struct snd_pcm_substream *substream)
 	int source = substream->number;
 
 	pointer = ctrl_ioread32(dev, dev->card.ctrl_reg + source);
-	BUG_ON(pointer == IOREAD32_ERR);
+	/* Crash the driver to avoid system hang */
+	BUG_ON(pointer == RADCAP_IORD32_ERR);
 	pointer = bytes_to_frames(runtime, pointer);
 	if (pointer >= runtime->buffer_size)
 		pointer = 0;

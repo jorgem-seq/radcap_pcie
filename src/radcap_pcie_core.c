@@ -123,7 +123,7 @@ static int radcap_hw_setup(struct radcap_dev *dev)
 		dev->fpga_id = lo_hi_readq(dev->ctrl + dev->card.fpga_id_reg);
 		udelay(1);
 	}
-	if ((dev->fpga_id >> 32) == IOREAD32_ERR)
+	if ((dev->fpga_id >> 32) == RADCAP_IORD32_ERR)
 		return -ENODEV;
 
 	/* Write the key */

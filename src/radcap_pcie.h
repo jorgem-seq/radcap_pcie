@@ -160,7 +160,7 @@ struct radcap_dev {
 /* Helpers */
 
 /* Card disconnection or bad host */
-#define IOREAD32_ERR			(~0u)
+#define RADCAP_IORD32_ERR		(~0u)
 
 static inline uint32_t ctrl_ioread32(struct radcap_dev *dev, uint32_t reg)
 {
@@ -170,7 +170,8 @@ static inline uint32_t ctrl_ioread32(struct radcap_dev *dev, uint32_t reg)
 static inline void ctrl_iowrite32(struct radcap_dev *dev, uint32_t reg, uint32_t val)
 {
 	iowrite32((val), dev->ctrl + (reg));
-	BUG_ON(ctrl_ioread32(dev, RADCAP_NODES_VAL_REG) == IOREAD32_ERR);
+	/* Crash the driver to avoid system hang */
+	BUG_ON(ctrl_ioread32(dev, RADCAP_NODES_VAL_REG) == RADCAP_IORD32_ERR);
 }
 
 static inline void sg_iowrite64(struct radcap_dev *dev, uint64_t reg, uint64_t val)
