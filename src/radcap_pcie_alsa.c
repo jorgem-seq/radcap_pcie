@@ -22,6 +22,7 @@
 
 #include <linux/module.h>
 #include <linux/pci.h>
+#include <linux/version.h>
 #include <sound/control.h>
 #include <sound/core.h>
 #include <sound/initval.h>
@@ -168,6 +169,24 @@ static int snd_radcap_pcm_close(struct snd_pcm_substream *substream)
 	return 0;
 }
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 5, 0)
+static int snd_radcap_pcm_hw_params(struct snd_pcm_substream *substream,
+				    struct snd_pcm_hw_params *hw_params)
+
+{
+	int ret = snd_pcm_lib_malloc_pages(substream, params_buffer_bytes(hw_params));
+
+	if (ret < 0)
+		return ret;
+	return 0;
+}
+
+static int snd_radcap_pcm_hw_free(struct snd_pcm_substream *substream)
+{
+	return snd_pcm_lib_free_pages(substream);
+}
+#endif
+
 static int snd_radcap_pcm_prepare(struct snd_pcm_substream *substream)
 {
 	struct snd_pcm_runtime *runtime = substream->runtime;
@@ -254,7 +273,11 @@ snd_radcap_pcm_pointer(struct snd_pcm_substream *substream)
 static const struct snd_pcm_ops snd_radcap_pcm_ops = {
 	.open		= snd_radcap_pcm_open,
 	.close		= snd_radcap_pcm_close,
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 5, 0)
 	.ioctl		= snd_pcm_lib_ioctl,
+	.hw_params	= snd_radcap_pcm_hw_params,
+	.hw_free	= snd_radcap_pcm_hw_free,
+#endif
 	.prepare	= snd_radcap_pcm_prepare,
 	.trigger	= snd_radcap_pcm_trigger,
 	.pointer	= snd_radcap_pcm_pointer,
@@ -273,9 +296,16 @@ static int snd_radcap_pcm_create(struct snd_card_radcap *chip)
 	pcm->private_data = chip;
 	pcm->info_flags = 0;
 	strscpy(pcm->name, RADCAP_PCM_NAME, sizeof(pcm->name));
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 5, 0)
+	snd_pcm_lib_preallocate_pages_for_all(pcm, SNDRV_DMA_TYPE_DEV_SG,
+					      &chip->pdev->dev,
+					      RADCAP_BUFFER_SIZE,
+					      RADCAP_BUFFER_SIZE);
+#else
 	snd_pcm_set_managed_buffer_all(pcm, SNDRV_DMA_TYPE_DEV_SG,
 				       &chip->pdev->dev,
 				       RADCAP_BUFFER_SIZE, RADCAP_BUFFER_SIZE);
+#endif
 	return 0;
 }
 

@@ -1,4 +1,4 @@
-## Sonifex Radcap PCIe V4L2 Driver for Linux 5.5+
+## Sonifex Radcap PCIe V4L2 Driver for Linux 5.4+
 
 ### Loading the modules
 
